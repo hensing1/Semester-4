@@ -1,7 +1,7 @@
 package AbstraktUndCo;
 
 public abstract class Landfahrzeug extends Fortbewegungsmittel{
-    private Motor motor;
+    Motor motor;
     private int kilometerstand;
     
     public Landfahrzeug(int baujahr) {
