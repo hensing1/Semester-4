@@ -1,12 +1,17 @@
 package AbstraktUndCo;
 
-public class Landfahrzeug extends Fortbewegungsmittel{
+public abstract class Landfahrzeug extends Fortbewegungsmittel{
     private Motor motor;
     private int kilometerstand;
     
     public Landfahrzeug(int baujahr) {
         super(baujahr);
         this.motor = new Motor(false, 6, 90);
+    }
+    
+    public Landfahrzeug(int baujahr, boolean isDiesel, int anzahlZylinder, int ps) {
+        super (baujahr);
+        this.motor = new Motor(isDiesel, anzahlZylinder, ps);
     }
 
     public Motor getMotor() {
