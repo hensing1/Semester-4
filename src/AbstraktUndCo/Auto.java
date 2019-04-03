@@ -8,6 +8,7 @@ public class Auto extends Landfahrzeug{
         kofferraumKlappeOffen = false;
     }
     
+    
     public Auto(int baujahr, boolean isDiesel, int anzahlZylinder, int ps) {
         super (baujahr, isDiesel, anzahlZylinder, ps);
     }
@@ -33,4 +34,8 @@ public class Auto extends Landfahrzeug{
         this.kofferraumKlappeOffen = kofferraumKlappeOffen;
     }
     
+    @Override
+    public String toString() {
+        return String.format("Beschreibung: %s%nBaujahr: %d, Anzahl Zylinder: %d", this.getBeschreibung(), this.getBaujahr(), this.getMotor().getAnzahlZylinder());
+    }
 }

@@ -5,7 +5,8 @@
  */
 package AbstraktUndCo;
 
-import java.util.HashSet;
+import java.util.*;
+
 
 /**
  *
@@ -13,16 +14,20 @@ import java.util.HashSet;
  */
 public class Main {
     public static void main(String[] args) {
-        Auto bmw = new Auto(2018, true, 26, 4500);
-            bmw.setKofferraumKlappeOffen(true);
-       
         
-        if (bmw.isKofferraumKlappeOffen()) {
-            System.out.println("Auto ist noch nicht abfahrbereit");
-            bmw.setKofferraumKlappeOffen(false);
-        }
-        else {
-            System.out.println("Alles dicht! und los");
+        UebungsaufgabenCollections();
+        
+    }
+    
+    public static void UebungsaufgabenCollections() {
+        Vector vWieVendetta = new Vector();
+  
+        vWieVendetta.add(new Auto(2017, false, 4, 130));
+        vWieVendetta.add(new Auto(2019, false, 4, 120));
+        vWieVendetta.add(new Auto(2018, true, 26, 4500));
+        
+        for (int i= 0; i < vWieVendetta.size(); i++) {
+            System.out.println(vWieVendetta.get(i).toString());
         }
     }
 }
