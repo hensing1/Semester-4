@@ -20,6 +20,8 @@ public class Auto extends Landfahrzeug{
             System.out.println(mke.toString());
         } catch (Motor.MotorLäuftNichtException mlne) {
             System.out.println(mlne.toString());
+        } finally {
+            System.out.println("Henning ist doof!");
         }
     }
 
@@ -30,4 +32,5 @@ public class Auto extends Landfahrzeug{
     public void setKofferraumKlappeOffen(boolean kofferraumKlappeOffen) {
         this.kofferraumKlappeOffen = kofferraumKlappeOffen;
     }
+    
 }
