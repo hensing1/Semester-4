@@ -14,7 +14,7 @@ import java.util.*;
  */
 public class Main {
     public static void main(String[] args) {
-        
+        UebungsaufgabenCollections();
         UebungsHashTables();
         
     }
@@ -44,11 +44,14 @@ public class Main {
             // autoboxing -- "4711" wird zu einem Objekt der Wrapper-Klasse Integer
         }
         
+        System.out.println(ht.get("bmw"));
+        System.out.println("Anzahl der Elemente: " +ht.size());
         Enumeration e = ht.elements();
         
         while (e.hasMoreElements()) {
             Auto mycar = (Auto) e.nextElement();
             System.out.println("Baujahr: " + mycar.getBaujahr());
+            
         }
         
     }
