@@ -8,8 +8,9 @@ public class Auto extends Landfahrzeug{
         kofferraumKlappeOffen = false;
     }
     
-    public Auto(int baujahr, boolean isDiesel, int anzahlZylinder, int ps) {
+    public Auto(String bezeichnung, int baujahr, boolean isDiesel, int anzahlZylinder, int ps) {
         super (baujahr, isDiesel, anzahlZylinder, ps);
+        setBeschreibung(bezeichnung);
     }
 
     @Override

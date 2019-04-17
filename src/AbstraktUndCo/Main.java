@@ -13,7 +13,7 @@ import java.util.HashSet;
  */
 public class Main {
     public static void main(String[] args) {
-        Auto bmw = new Auto(2018, true, 26, 4500);
+        /*Auto bmw = new Auto(2018, true, 26, 4500);
             bmw.setKofferraumKlappeOffen(true);
        
         
@@ -23,6 +23,7 @@ public class Main {
         }
         else {
             System.out.println("Alles dicht! und los");
-        }
+        }*/
+        System.out.println((int) 'a');
     }
 }

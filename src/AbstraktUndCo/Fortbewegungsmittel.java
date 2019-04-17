@@ -2,8 +2,8 @@ package AbstraktUndCo;
 
 public abstract class Fortbewegungsmittel {
     
-    private int baujahr;
-    private String beschreibung;
+    protected int baujahr;
+    protected String beschreibung;
     
     public Fortbewegungsmittel(int baujahr) {
         this.baujahr = baujahr;
