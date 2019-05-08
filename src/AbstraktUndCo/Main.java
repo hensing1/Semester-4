@@ -5,7 +5,8 @@
  */
 package AbstraktUndCo;
 
-import java.util.HashSet;
+import ReinRaus.*;
+import java.io.IOException;
 
 /**
  *
@@ -24,6 +25,7 @@ public class Main {
         else {
             System.out.println("Alles dicht! und los");
         }*/
-        System.out.println((int) 'a');
+        ReadWriteTest.logloglogloglog();
+        ReadWriteTest.lesenBildet();
     }
 }
