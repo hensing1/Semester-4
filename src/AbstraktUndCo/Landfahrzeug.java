@@ -14,6 +14,8 @@ public abstract class Landfahrzeug extends Fortbewegungsmittel{
         this.motor = new Motor(isDiesel, anzahlZylinder, ps);
     }
 
+    abstract void neAbstrakteMethodeWeilDarum();
+
     public Motor getMotor() {
         return motor;
     }

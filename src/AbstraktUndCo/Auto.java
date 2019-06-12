@@ -7,7 +7,12 @@ public class Auto extends Landfahrzeug{
         super(baujahr);
         kofferraumKlappeOffen = false;
     }
-    
+
+    @Override
+    void neAbstrakteMethodeWeilDarum() {
+        // pass
+    }
+
     public Auto(String bezeichnung, int baujahr, boolean isDiesel, int anzahlZylinder, int ps) {
         super (baujahr, isDiesel, anzahlZylinder, ps);
         setBeschreibung(bezeichnung);
