@@ -21,21 +21,29 @@ import java.util.logging.Logger;
 public class Server {
     public static void main(String[] args) {
         System.out.println("Willkommen zum serienreifen Server");
-        Server s = new Server();
-        while(true)
-            s.receiveMessage();
+        new Server().receiveMessage();
     }
     
     private void receiveMessage() {
-        try {
-            ServerSocket ss = new ServerSocket(4000);
-            Socket cs = ss.accept();
-            InputStream in = cs.getInputStream();
-            BufferedReader read = new BufferedReader(new InputStreamReader(in));
-            String received = read.readLine();
-            
-            System.out.println(String.format("Empfangen: %s", received));
-            
+
+        try (ServerSocket ss = new ServerSocket(4000)) {
+            String received;
+            Socket cs;
+            InputStream in;
+            BufferedReader read;
+            System.out.println("Server steht bereit...");
+            do {
+                cs = ss.accept();
+                System.out.println("Verbindungsanfrage erhalten");
+                in = cs.getInputStream();
+                read = new BufferedReader(new InputStreamReader(in));
+
+                received = read.readLine();
+                System.out.println(String.format("Empfangen: %s", received));
+            } while (!received.toLowerCase().equals("exit"));
+
+            System.out.println("Shutting down...");
+
             in.close();
             read.close();
             ss.close();

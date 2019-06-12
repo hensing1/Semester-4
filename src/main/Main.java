@@ -25,7 +25,8 @@ public class Main {
         else {
             System.out.println("Alles dicht! und los");
         }*/
-        ReadWriteTest.logloglogloglog();
-        ReadWriteTest.lesenBildet();
+        //ReadWriteTest.logloglogloglog();
+        //ReadWriteTest.lesenBildet();
+        ReadWriteTest.lesenBildetDiesmalMitURL();
     }
 }

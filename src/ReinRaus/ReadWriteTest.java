@@ -5,13 +5,9 @@
  */
 package ReinRaus;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -72,6 +68,22 @@ public class ReadWriteTest {
         } catch (IOException ioe) {
             System.out.println("irgendwas ist falsch");
             ioe.printStackTrace();
+        }
+    }
+
+    public static void lesenBildetDiesmalMitURL() {
+        try {
+            URL resource = new URL("file", "localhost", logpath);
+            InputStream is = resource.openStream();
+
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String in;
+            while((in = br.readLine()) != null)
+                System.out.println(in);
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     

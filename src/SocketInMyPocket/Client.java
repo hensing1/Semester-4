@@ -13,7 +13,11 @@ import java.util.logging.Logger;
 public class Client {
     public static void main(String[] args) {
         System.out.println("Willkommen zum coolen Client");
-        new Client().sendToServer("Toller Teststring");
+        Client c = new Client();
+        c.sendToServer("Toller Teststring 1");
+        c.sendToServer("Toller Teststring 2");
+        c.sendToServer("Toller Teststring 3");
+        c.sendToServer("exit");
     }
     
     private void sendToServer(String msg) {
