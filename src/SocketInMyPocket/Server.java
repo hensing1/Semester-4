@@ -5,10 +5,7 @@
  */
 package SocketInMyPocket;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -23,25 +20,105 @@ public class Server {
         System.out.println("Willkommen zum serienreifen Server");
         Server s = new Server();
         while(true)
-            s.receiveMessage();
+            s.startSingleThreadedServer();
     }
-    
-    private void receiveMessage() {
+
+    private void startSingleThreadedServer() {
         try {
-            ServerSocket ss = new ServerSocket(4000);
-            Socket cs = ss.accept();
-            InputStream in = cs.getInputStream();
-            BufferedReader read = new BufferedReader(new InputStreamReader(in));
-            String received = read.readLine();
-            
-            System.out.println(String.format("Empfangen: %s", received));
-            
+            ServerSocket serverSocket = new ServerSocket(4000); // Endpunkt für Kommunikation auf Port 4000
+
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Neue Connection!!!");
+
+            OutputStream out = clientSocket.getOutputStream(); // OutputStream -> schreiben
+            PrintWriter writer = new PrintWriter(out, true);
+
+            InputStream in = clientSocket.getInputStream(); // InputStream -> lesen
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+            writer.println("Hi, ich bin ein Server!");
+
+            String received = "Simmelbimmel";
+            //while ((received = reader.readLine()) != null) {
+            while (received != null) {
+                if (received.toLowerCase().equals("exit")) {
+                    writer.println("Tschö!");
+                    break;
+                } else {
+                    System.out.println(String.format("Empfangenn: %s", received));
+                    writer.println(String.format("Ich habe folgendes empfangen: %s", received));
+                }
+                received = reader.readLine();
+                System.out.println("I'm reached!");
+            }
+
             in.close();
-            read.close();
-            ss.close();
-            cs.close();
+            reader.close();
+            clientSocket.close();
         } catch (IOException ex) {
             Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void startServer() {
+        try {
+            ServerSocket serverSocket = new ServerSocket(4000); // Endpunkt für Kommunikation auf Port 4000
+
+            boolean rumbawumba = false;
+
+            while(true) {
+                Socket clientSocket = serverSocket.accept(); // accept() wird aufgerufen, wenn Verbindungsanfrage erhalten wurde
+                Thread t = new ClientConnection(clientSocket);
+                t.start();
+
+                if (rumbawumba) // fick dich Javacompiler und dein unreachable statement
+                    break;
+            }
+
+            serverSocket.close();
+
+        } catch (IOException ex) {
+            Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private class ClientConnection extends Thread {
+        Socket clientSocket;
+
+        public ClientConnection(Socket cs) {
+            this.clientSocket = cs;
+        }
+
+        @Override
+        public void run() {
+            System.out.println("Neue Connection!!!!!");
+            try {
+                OutputStream out = clientSocket.getOutputStream(); // OutputStream -> schreiben
+                PrintWriter writer = new PrintWriter(out, true);
+
+                InputStream in = clientSocket.getInputStream(); // InputStream -> lesen
+                BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+
+                writer.println("Hi, ich bin ein Server!");
+
+                String received;
+                while ((received = reader.readLine()) != null) {
+                    if (received.toLowerCase().equals("exit")) {
+                        writer.println("Tschö!");
+                        break;
+                    } else {
+                        System.out.println(String.format("Empfangen: %s"));
+                        writer.println(String.format("Ich habe folgendes empfangen: %s", received));
+                    }
+                }
+
+                in.close();
+                reader.close();
+                clientSocket.close();
+            } catch (IOException ioe) {
+                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ioe);
+            }
+            System.out.println("Connection wurde geschlossen.");
         }
     }
 }
