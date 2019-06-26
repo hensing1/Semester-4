@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 public class ClientEins {
     public static void main(String[] args) {
-        System.out.println("Willkommen zum coolen Client");
+        System.out.println("Willkommen zum coolen ClientZwei");
         ClientEins c = new ClientEins();
         c.sendToServer("Toller Teststring 1");
         c.sendToServer("Toller Teststring 2");
